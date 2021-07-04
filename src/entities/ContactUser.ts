@@ -1,5 +1,6 @@
-import {Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, EntityColumnNotFound} from 'typeorm';
+import {Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, EntityColumnNotFound, ManyToMany} from 'typeorm';
 import {v4 as UUID} from 'uuid';
+import { ContactUserTag_ContactUser } from './ContactUserTag_ContactUser';
 
 @Entity("ContactUser")
 class ContactUser{
@@ -18,6 +19,11 @@ class ContactUser{
  
  @CreateDateColumn()
  created_at: Date;
+
+
+ 
+ @ManyToMany(()=>ContactUserTag_ContactUser)
+ contact_user_tag: ContactUserTag_ContactUser;
 
   constructor(){
       if(!this.id){

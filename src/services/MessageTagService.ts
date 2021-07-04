@@ -3,7 +3,7 @@ import { MessageTagRepository } from "src/respositories/MessageRepository";
 import { getCustomRepository, Repository } from "typeorm";
 
 
-export interface IMessageCreate {
+export interface IMessageTagCreate {
     description: string,
  }
 
@@ -15,7 +15,7 @@ class MessageTagService{
        this.messageTagRepository = getCustomRepository(MessageTagRepository);
    }
 
-   async create({description}: IMessageCreate){
+   async create({description}: IMessageTagCreate){
 
    const messageTagRepository =  this.messageTagRepository.create({description})
    await this.messageTagRepository.save(messageTagRepository);

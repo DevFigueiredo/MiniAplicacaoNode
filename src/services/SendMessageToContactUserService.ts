@@ -24,6 +24,10 @@ class SendMessageToContactUserService{
    }
 
 
+   async showPendingMessages(){
+    return await this.sendMessageToContactRepository.find({where: { sended: false}})
+   }
+
 
 }
 

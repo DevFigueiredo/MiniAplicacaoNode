@@ -1,14 +1,14 @@
-import { MessagesService } from '@services/MessageService';
+import { ISendMessageToContactUser,SendMessageToContactUserService } from '@services/SendMessageToContactUserService';
 import {Request, Response} from 'express';
 
-class MessagesController{
-
+class SendMessageToContactUserController{
 
    async create(request: Request, response: Response): Promise<Response>{
-        const {text_message, contact_user_tag_id, message_tag_id}  = request.body;
+        const {contact_user_id, message_id}: ISendMessageToContactUser  = request.body;
         try{
-      
-        return response.status(201).json({})
+            const sendMessageToContactUserService = new SendMessageToContactUserService()
+           const sendMessageToContactUser = await sendMessageToContactUserService.create({contact_user_id,message_id})
+        return response.status(201).json(sendMessageToContactUser)
         }catch(err){
         return response.status(400).json({
             messageError: err.message
@@ -17,20 +17,8 @@ class MessagesController{
     
     }
 
-    async sendMessages(request: Request, response: Response): Promise<Response>{
-        try{
-        const messagesService = new MessagesService()
-         const messages = messagesService.sendMessages()
-        return response.status(201).json(messages)
-        }catch(err){
-        return response.status(400).json({
-            messageError: err.message
-        })
-        }
-    
-    }
 
 
 }
 
-export {MessagesController};
+export {SendMessageToContactUserController};
