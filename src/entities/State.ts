@@ -1,13 +1,13 @@
 import {Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn} from 'typeorm';
 import {v4 as UUID} from 'uuid';
 
-@Entity("MessageTag")
-class MessageTag{
+@Entity("State")
+class State{
  @PrimaryColumn()
  id: string;
  
  @Column()
- description: string;
+ name: string;
  
  
  @UpdateDateColumn()
@@ -16,6 +16,8 @@ class MessageTag{
  @CreateDateColumn()
  created_at: Date;
 
+
+ 
   constructor(){
       if(!this.id){
           this.id = UUID();
@@ -24,4 +26,4 @@ class MessageTag{
 
 }
 
-export {MessageTag};
+export {State};
