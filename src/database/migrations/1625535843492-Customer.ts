@@ -1,12 +1,10 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class MessageTag1625429991714 implements MigrationInterface {
-
-   
+export class Customer1625535843492 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "MessageTag",
+                name: "Customer",
                 columns: [
                     {
                         name: "id",
@@ -14,9 +12,20 @@ export class MessageTag1625429991714 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: "description",
-                        type: "varchar",
-                        isUnique: true
+                        name: "name",
+                        type: "varchar"
+                    },
+                    {
+                        name: "gender",
+                        type: "varchar"
+                    },
+                    {
+                        name: "birth_date",
+                        type: "varchar"
+                    },
+                    {
+                        name: "city_id",
+                        type: "varchar"
                     },
                     {
                         name: "created_at",
@@ -29,15 +38,22 @@ export class MessageTag1625429991714 implements MigrationInterface {
                         default: "now()"
                     },
                     
-            ]
+            ],
+            foreignKeys:[{
+                name:"FKCity",
+                referencedTableName: "City",
+                referencedColumnNames: ["id"],
+                columnNames: ["city_id"],
+                onUpdate: "SET NULL",
+            }]
             })
         )
-   
-   
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("MessageTag");
+        await queryRunner.dropTable("Customer");
 
     }
+
 }

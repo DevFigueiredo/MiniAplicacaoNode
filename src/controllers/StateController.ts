@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import { IState } from '../services/StateService';
+import { IState, StateService } from '../services/StateService';
 
 class StateController{
 
@@ -7,7 +7,10 @@ class StateController{
    async create(request: Request, response: Response): Promise<Response>{
         const {name}: IState = request.body;
         try{
-        return response.status(201).json({})
+        const stateService = new StateService()
+        const state = await stateService.create({name})
+
+        return response.status(201).json(state)
         }catch(err){
         return response.status(400).json({
             messageError: err.message

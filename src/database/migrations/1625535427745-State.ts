@@ -1,11 +1,10 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class Message1625430154397 implements MigrationInterface {
-
+export class State1625535427745 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "Message",
+                name: "State",
                 columns: [
                     {
                         name: "id",
@@ -13,16 +12,9 @@ export class Message1625430154397 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: "message_tag_id",
-                        type: "varchar",
-                    },
-                    {
                         name: "name",
                         type: "varchar",
-                    },
-                    {
-                        name: "text_message",
-                        type: "text",
+                        isUnique: true
                     },
                     {
                         name: "created_at",
@@ -35,22 +27,14 @@ export class Message1625430154397 implements MigrationInterface {
                         default: "now()"
                     },
                     
-            ],
-            foreignKeys:[{
-                name:"FkMessageTag",
-                referencedTableName: "MessageTag",
-                referencedColumnNames: ["id"],
-                columnNames: ["message_tag_id"],
-                onUpdate: "SET NULL",
-            }]
-            })
+            ]})
         )
-   
-   
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("Message");
+        await queryRunner.dropTable("State");
 
     }
+
 }
