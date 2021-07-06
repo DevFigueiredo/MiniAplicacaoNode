@@ -17,6 +17,12 @@ class StateService{
     
    async create({name}: IState){
     const State = this.stateRepository.create({name})
+    const stateAlreadyExists = await this.stateRepository.findOne({name})
+
+    if(stateAlreadyExists){
+        throw new Error("State Already exists!");
+    }
+
     await this.stateRepository.save(State);
 
     return State;

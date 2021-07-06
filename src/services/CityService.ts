@@ -22,6 +22,14 @@ class CityService{
     
    async create({name, state_id}: ICity){
     const City = this.cityRepository.create({name, state_id})
+    
+    const cityAlreadyExists = await this.cityRepository.findOne({name, state_id})
+
+    if(cityAlreadyExists){
+        throw new Error("City Already exists!");
+    }
+
+
     await this.cityRepository.save(City);
 
     return City;

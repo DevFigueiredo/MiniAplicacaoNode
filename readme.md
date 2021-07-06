@@ -1,4 +1,4 @@
-# Upvote Posts 
+# Mini Aplicacao NodeJS Posts 
 
 ## Descrição do Projeto
 <p align="center">Projeto com possibilidade criar postagens, e dar like nas postagens criadas.</p>
@@ -11,10 +11,10 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 
 ### Clone este repositório
-$ git clone <https://github.com/DevFigueiredo/Upvotes>
+$ git clone <https://github.com/DevFigueiredo/MiniAplicacaoNode>
 
 ### Acesse a pasta do projeto no terminal/cmd
-$ cd Upvotes
+$ cd MiniAplicacaoNode
 
 ### Instale as dependências
 $ yarn install
