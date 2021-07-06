@@ -21,7 +21,7 @@ export class Customer1625535843492 implements MigrationInterface {
                     },
                     {
                         name: "birth_date",
-                        type: "varchar"
+                        type: "datetime"
                     },
                     {
                         name: "city_id",

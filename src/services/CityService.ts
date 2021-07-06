@@ -1,6 +1,8 @@
-import { getCustomRepository, Repository } from 'typeorm';
+import { getCustomRepository, Like, Repository } from 'typeorm';
 import { CityRepository } from '../respositories/CityRepository';
 import { City } from '../entities/City';
+import { State } from '../entities/State';
+import { StateRepository } from '../respositories/StateRepository';
 
 export interface ICity {
     id?: string;
@@ -11,9 +13,11 @@ export interface ICity {
 class CityService{
 
     private cityRepository: Repository<City>;
+    private stateRepository: Repository<State>;
 
     constructor (){
         this.cityRepository = getCustomRepository(CityRepository);
+        this.stateRepository = getCustomRepository(StateRepository);
     }
     
    async create({name, state_id}: ICity){
@@ -23,6 +27,20 @@ class CityService{
     return City;
    }
 
+   async find({name, state_name}){
+
+    const state = await this.stateRepository.findOne({name:state_name})
+    const params = {state, name}
+    
+    if(!params.state) delete params.state;
+    if(!params.name) delete params.name;
+
+    const customer = await this.cityRepository.find({ relations:["state"], where:params });
+    
+    return customer;
+
+   }
+   
 
 
 

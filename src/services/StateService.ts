@@ -22,6 +22,10 @@ class StateService{
     return State;
    }
 
+   async find(){
+    const State = await this.stateRepository.find()
+    return State;
+   }
 
 
 

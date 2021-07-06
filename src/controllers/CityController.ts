@@ -8,9 +8,9 @@ class CityController{
         const {name, state_id}: ICity = request.body;
         try{
         const cityService = new CityService();
-        await cityService.create({name,state_id})   
+        const city = await cityService.create({name,state_id})   
         
-        return response.status(201).json({})
+        return response.status(201).json(city)
         }catch(err){
         return response.status(400).json({
             messageError: err.message
@@ -18,6 +18,24 @@ class CityController{
         }
     
     }
+
+    async find(request: Request, response: Response): Promise<Response>{
+        const {name, state_name} = request.query;
+          
+        try{
+        const cityService = new CityService();
+        const city = await cityService.find({name, state_name});
+        return response.status(200).json(city)
+    
+    }catch(err){
+        return response.status(400).json({
+            messageError: err.message
+        })
+        }
+    
+    }
+
+    
 
 
 

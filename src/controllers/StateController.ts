@@ -21,6 +21,22 @@ class StateController{
 
 
 
+    async find(request: Request, response: Response): Promise<Response>{
+        try{
+        const stateService = new StateService()
+        const state = await stateService.find()
+        return response.status(201).json(state)
+        }catch(err){
+        return response.status(400).json({
+            messageError: err.message
+        })
+        }
+    
+    }
+
+    
+
+
 }
 
 export {StateController};

@@ -1,4 +1,4 @@
-import {Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, EntityColumnNotFound, ManyToMany, ManyToOne, JoinColumn} from 'typeorm';
+import {Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, EntityColumnNotFound, ManyToMany, ManyToOne, JoinColumn, OneToOne} from 'typeorm';
 import {v4 as UUID} from 'uuid';
 import { State } from './State';
 

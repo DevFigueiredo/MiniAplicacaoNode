@@ -11,7 +11,7 @@ class Customer{
  name: string;
  
  @Column()
- birth_date: string;
+ birth_date: Date;
 
  @Column({length: 1})
  gender: string;
