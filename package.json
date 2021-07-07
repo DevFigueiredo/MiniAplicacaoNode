@@ -9,6 +9,7 @@
     "test": "node_modules/.bin/jest --watchAll --runInBand --verbose"
   },
   "dependencies": {
+    "@types/swagger-ui-express": "^4.1.3",
     "axios": "^0.21.1",
     "babel": "^6.23.0",
     "dotenv": "^10.0.0",
@@ -19,6 +20,7 @@
     "socket.io": "^4.0.1",
     "sqlite3": "^5.0.2",
     "supertest": "^6.1.3",
+    "swagger-ui-express": "^4.1.6",
     "ts-jest": "^27.0.3",
     "typeorm": "^0.2.34",
     "uuid": "^8.3.2"

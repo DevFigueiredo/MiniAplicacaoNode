@@ -19,11 +19,9 @@ describe('City', () => {
       name: "CidadeTeste"+rndInt,
     	state_id: "5ec4219c-988e-4eec-a588-5706d2280aa5"
     }
-    console.log(data)
     const response = await request(app)
     .post('/city/create')
     .send(data)
-    console.log(response.body)
     expect(response.statusCode).toBe(201);    
 });    
 

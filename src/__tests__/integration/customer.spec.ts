@@ -69,6 +69,7 @@ it('Delete Customer', async () => {
   //   city_id: "2a7a9fca-a7ca-48c9-8587-752ad70714b9",
   //   id: "74a37cc1-e70f-4912-9cdd-0e32b14ac9cc"
   // }
+  
   // console.log(data)
   // const response = await request(app)
   // .put('/customer/update')
