@@ -28,14 +28,17 @@ class CustomerService{
 
    async findByName(name: string){
     const customer = await this.customerRepository.find({
-        name: Like(`%${name}%`)
-    }) 
+        relations:["city"],
+        where:{
+        name: Like(`%${name}%`),
+    }
+}) 
     return customer;
 
    }
 
    async findById(id: string){
-    const customer = await this.customerRepository.find({where: {id}}) 
+    const customer = await this.customerRepository.find({relations:["city"], where: {id}}) 
    return customer;
 
    }

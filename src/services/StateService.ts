@@ -28,8 +28,10 @@ class StateService{
     return State;
    }
 
-   async find(){
-    const State = await this.stateRepository.find()
+   async find({name}){
+    const params = {name}
+    if(!params.name) delete params.name;
+    const State = await this.stateRepository.find({where:params})
     return State;
    }
 
