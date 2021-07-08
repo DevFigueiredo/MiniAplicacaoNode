@@ -62,14 +62,16 @@ class CustomerController{
     }
 
     async update(request: Request, response: Response): Promise<Response>{
-        const {name, gender, birth_date, city_id, id}: ICustomer = request.body;
+        const {name, gender, birth_date, city_id}: ICustomer = request.body;
+        const { id } = request.params;
+        console.log(id);
         try{
          const customerService = new CustomerService();
 
         const customer = await customerService.update({id,name,birth_date,gender,city_id,});
 
 
-        return response.status(201).json(customer)
+        return response.status(204).json(customer)
         }catch(err){
         return response.status(400).json({
             messageError: err.message
@@ -83,7 +85,7 @@ class CustomerController{
         try{
          const customerService = new CustomerService();
          const customer = await customerService.delete(id);
-         return response.status(204).json(customer)
+         return response.status(200).json(customer)
         }catch(err){
         return response.status(400).json({
             messageError: err.message

@@ -15,7 +15,7 @@ routes.get("/customer/find", customerController.findByName);
 routes.get("/city/find", cityController.find);
 routes.get("/state/find", stateController.find);
 routes.post("/customer/create", customerController.create);
-routes.put("/customer/update", customerController.update);
+routes.put("/customer/update/:id", customerController.update);
 routes.delete("/customer/delete/:id", customerController.delete);
 routes.post("/state/create", stateController.create);
 

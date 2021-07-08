@@ -19,11 +19,13 @@ describe('Customer', () => {
       name: "Cliente de Teste"+rndInt,
       gender: "MASCULINO",
       birth_date:	"1999-10-27",
-      city_id: "2a7a9fca-a7ca-48c9-8587-752ad70714b9"
+      city_id: "d8f43881-b57e-45fd-8fdf-49d0cefd80f1"
     }
+    
     const response = await request(app)
     .post('/customer/create')
     .send(data)
+    console.log(response.body)
     expect(response.statusCode).toBe(201);    
 });    
 
@@ -38,7 +40,7 @@ it('Search Customer with name', async () => {
   
 it('Search Customer with ID', async () => {
   const response = await request(app)
-  .get('/customer/find/74a37cc1-e70f-4912-9cdd-0e32b14ac9cc')
+  .get('/customer/find/9d2a0979-fcca-4db0-99b3-287b10422f11')
    expect(response.statusCode).toBe(200);    
 });  
 
@@ -48,13 +50,12 @@ it('Update Customer', async () => {
     name: "Cliente de Teste",
     gender: "MASCULINO",
     birth_date:	"1999-10-27",
-    city_id: "2a7a9fca-a7ca-48c9-8587-752ad70714b9",
-    id: "74a37cc1-e70f-4912-9cdd-0e32b14ac9cc"
+    city_id: "d8f43881-b57e-45fd-8fdf-49d0cefd80f1",
   }
   const response = await request(app)
-  .put('/customer/update')
+  .put('/customer/update/9d2a0979-fcca-4db0-99b3-287b10422f11')
   .send(data)
-  expect(response.statusCode).toBe(201);  
+  expect(response.statusCode).toBe(202);  
 
 });  
 
@@ -66,7 +67,7 @@ it('Delete Customer', async () => {
   //   name: "Cliente de Teste"+rndInt,
   //   gender: "MASCULINO",
   //   birth_date:	"1999-10-27",
-  //   city_id: "2a7a9fca-a7ca-48c9-8587-752ad70714b9",
+  //   city_id: "d8f43881-b57e-45fd-8fdf-49d0cefd80f1",
   //   id: "74a37cc1-e70f-4912-9cdd-0e32b14ac9cc"
   // }
   

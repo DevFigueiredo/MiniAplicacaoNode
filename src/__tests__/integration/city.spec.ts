@@ -17,7 +17,7 @@ describe('City', () => {
     const rndInt = Math.floor(Math.random() * 1000) + 1
     const data = {
       name: "CidadeTeste"+rndInt,
-    	state_id: "5ec4219c-988e-4eec-a588-5706d2280aa5"
+    	state_id: "3e22b263-1f44-441d-b706-02f2998e100c"
     }
     const response = await request(app)
     .post('/city/create')

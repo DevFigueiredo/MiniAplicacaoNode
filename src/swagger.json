@@ -1,0 +1,419 @@
+{
+
+
+        "openapi": "3.0.0",
+        "info": {
+          "description": "API simplificada do mini sistema de clientes.",
+          "version": "1.0.0",
+          "title": "Swagger MiniAplicacao",
+          "contact": {
+            "email": "devfigueiredo@gmail.com"
+          },
+          "license": {
+            "name": "NodeJS",
+            "url": "https://nodejs.org/"
+          }
+        },
+        "servers": [
+            {
+              "url": "http://localhost:{port}/{basePath}",
+              "description": "The production API server",
+              "variables": {
+                "basePath": {
+                  "default": "v1"
+                },
+                "port": {
+                    "default": "3333"
+                  }
+              }
+            }
+          ],
+        "tags": [
+          {
+            "name": "State",
+            "description": "All states endpoints"
+           
+          },
+          {
+            "name": "City",
+            "description": "All cities endpoints"
+          },
+          {
+            "name": "Customer",
+            "description": "All customers endpoints"
+            
+          }
+        ],
+        "schemes": [
+          "https",
+          "http"
+        ],
+        "paths": {
+            "/state/create": {
+                "post": {
+                  "tags": ["State"],
+                  "summary": "Create a new state",
+                 "description": "Create a new state",
+                  "requestBody":{
+                      "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref": "#/components/schemas/State"
+                                },
+                                "examples":{
+                                    "city":{
+                                            "value": {
+                                                "name": "SP"
+                                            }
+                                    }
+                                }
+                            }
+                      }
+                  },
+                  "responses": {
+                    "201": {
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref": "#/components/schemas/State"
+                                },
+                                "examples":{
+                                    "city":{
+                                            "value": {
+                                                    "id": "9d2a0979-fcca-4db0-99b3-287b10422f11",
+                                                    "name": "SP",
+                                                    "updated_at": "2021-07-07T23:30:22.000Z",
+                                                    "created_at": "2021-07-07T23:30:22.000Z"
+                                            }
+                                    }
+                                }
+                            }
+                      }            
+                    }
+                  }
+                  }
+                },
+                "/state/find": {
+                    "get": {
+                      "tags": ["State"],
+                       "summary": "Find a State",
+                      "description": "Find a State",
+                      "parameters":[{
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name State"
+                      }],
+                      "responses": {
+                        "200": {
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "type":"array",
+                                        "items":{
+                                        "$ref": "#/components/schemas/City"
+                                    }
+                                    
+                                }
+                                    
+                                    
+                                }
+                          }                }
+                      }
+                      }
+                    },
+
+          "/city/create": {
+            "post": {
+              "tags": ["City"],
+              "summary": "Create a new city",
+             "description": "Create a new city",
+              "requestBody":{
+                  "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/City"
+                            },
+                            "examples":{
+                                "city":{
+                                        "value": {
+                                            "name": "Guarulhos",
+                                            "state_id": "3e22b263-1f44-441d-b706-02f2998e100c"
+                                        }
+                                }
+                            }
+                        }
+                  }
+              },
+              "responses": {
+                "201": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/City"
+                            },
+                            "examples":{
+                                "city":{
+                                        "value": {
+                                                "id": "9d2a0979-fcca-4db0-99b3-287b10422f11",
+                                                "name": "Guarulhos",
+                                                "state_id": "3e22b263-1f44-441d-b706-02f2998e100c",
+                                                "updated_at": "2021-07-07T23:30:22.000Z",
+                                                "created_at": "2021-07-07T23:30:22.000Z"
+                                        }
+                                }
+                            }
+                        }
+                  }            
+                }
+              }
+              }
+            },
+            "/city/find": {
+                "get": {
+                  "tags": ["City"],
+                   "summary": "Find a City by name or state name",
+                  "description": "Find a City by name or state name",
+                  "parameters":[{
+                    "name": "name",
+                    "in": "query",
+                    "description": "Name City"
+                  },
+                  {
+                    "name": "state_name",
+                    "in": "query",
+                    "description": "Name State"
+                  }],
+                  "responses": {
+                    "200": {
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                    "$ref": "#/components/schemas/City"
+                                }
+                                
+                            }
+                                
+                                
+                            }
+                      }                }
+                  }
+                  }
+                },
+            "/customer/create": {
+                "post": {
+                    "tags": ["Customer"],
+                    "summary": "Create a customer",
+                    "description": "Create a customer",
+                    "requestBody":{
+                      "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref": "#/components/schemas/Customer"
+                                },
+                                "examples":{
+                                    "customer":{
+                                            "value": {
+                                                
+                                                    "name": "Daniel Figueiredo",
+                                                    "birth_date": "1999-10-27",
+                                                    "gender": "MASCULINO",
+                                                    "city_id": "d8f43881-b57e-45fd-8fdf-49d0cefd80f1"                                                  
+                                                        
+                                            }
+                                    }
+                                }
+                            }
+                      }
+                  },
+                  "responses": {
+                    "201": {
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref": "#/components/schemas/City"
+                                },
+                                "examples":{
+                                    "city":{
+                                            "value": {
+                                                "id": "9d2a0979-fcca-4db0-99b3-287b10422f11",
+                                                "name": "Daniel Figueiredo",
+                                                "birth_date": "1999-10-27",
+                                                "gender": "MASCULINO",
+                                                "city_id": "d8f43881-b57e-45fd-8fdf-49d0cefd80f1",
+                                                "updated_at": "2021-07-07T23:30:22.000Z",
+                                                "created_at": "2021-07-07T23:30:22.000Z"
+                                            }
+                                    }
+                                }
+                            }
+                      }                }
+                  }
+                  }
+                },
+                "/customer/update/{id}": {
+                    "put": {
+                      "tags": ["Customer"],
+                       "summary": "Update customer",
+                      "description": "Update customer",
+                      "parameters":[{
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Customer",
+                        "required": true  
+                      }],
+                      "requestBody":{
+                          
+                          "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "$ref": "#/components/schemas/Customer"
+                                    },
+                                    "examples":{
+                                        "customer":{
+                                                "value": {
+                                                    
+                                                        "name": "Daniel Figueiredo",
+                                                        "birth_date": "1999-10-27",
+                                                        "gender": "MASCULINO",
+                                                        "city_id": "d8f43881-b57e-45fd-8fdf-49d0cefd80f1"                                                  
+                                                            
+                                                }
+                                        }
+                                    }
+                                }
+                          }
+                      },
+                      "responses": {
+                        "204": {
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "$ref": "#/components/schemas/Customer"
+                                    },
+                                    "examples":{
+                                        "customer":{
+                                                "value": {
+                                                    "id": "9d2a0979-fcca-4db0-99b3-287b10422f11",
+                                                    "name": "Daniel Figueiredo",
+                                                    "birth_date": "1999-10-27",
+                                                    "gender": "MASCULINO",
+                                                    "city_id": "d8f43881-b57e-45fd-8fdf-49d0cefd80f1",
+                                                    "updated_at": "2021-07-07T23:30:22.000Z",
+                                                    "created_at": "2021-07-07T23:30:22.000Z"
+                                                }
+                                        }
+                                    }
+                                }
+                          }                }
+                      }
+                      }
+                    },
+                    "/customer/delete/{id}": {
+                        "delete": {
+                          "tags": ["Customer"],
+                           "summary": "Delete a customer",
+                          "description": "Delete a customer",
+                          "parameters":[{
+                            "name": "id",
+                            "in": "path",
+                            "description": "ID Customer",
+                            "required": true  
+                          }],
+                          "responses": {
+                            "200": {
+                                "content": {
+                                    "application/json":{
+                                      
+                                        
+                                    }
+                              }                }
+                          }
+                          }
+                        },
+                        "/customer/find": {
+                            "get": {
+                              "tags": ["Customer"],
+                               "summary": "Find a customer",
+                              "description": "Find a customer",
+                              "parameters":[{
+                                "name": "name",
+                                "in": "query",
+                                "description": "Name Customer",
+                                "required": true  
+                              }],
+                              "responses": {
+                                "200": {
+                                    "content": {
+                                        "application/json":{
+                                            "schema":{
+                                                "type":"array",
+                                                "items":{
+                                                "$ref": "#/components/schemas/Customer"
+                                            }
+                                            
+                                        }
+                                            
+                                            
+                                        }
+                                  }                }
+                              }
+                              }
+                            }
+        },
+        "components":{
+            "schemas":{
+                "State":{
+                    "type": "object",
+                    "properties":{
+                        "name":{
+                            "type": "string"
+                        }
+                    }
+
+                },
+                "City":{
+                    "type": "object",
+                    "properties":{
+                        "id":{
+                            "type": "string"
+                        },
+                        "name":{
+                            "type": "string"
+                        },
+                        "state_id":{
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
+                    }
+
+                },
+               
+                "Customer":{
+                    "type": "object",
+                    "properties":{
+                        "name":{
+                            "type": "string"
+                        },
+                        "gender":{
+                            "type": "string"
+                        },
+                        "birth_date":{
+                            "type": "string"
+                        },
+                        "city_id":{
+                            "type": "string"
+                        }
+                    }
+
+                }
+         
+            }
+        }
+      }
