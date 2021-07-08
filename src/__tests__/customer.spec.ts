@@ -16,12 +16,15 @@ beforeAll(async ()=>{
 describe('Customer', () => {
     
   it('Create Customer', async () => {
+    const city = new CityService();
+    const cityData = (await city.find("Teste"))[0];
+
     const rndInt = Math.floor(Math.random() * 80) + 1
     const data = {
       name: "Cliente de Teste"+rndInt,
       gender: "MASCULINO",
       birth_date:	"1999-10-27",
-      city_id: "d8f43881-b57e-45fd-8fdf-49d0cefd80f1"
+      city_id: cityData.id
     }
     
     const response = await request(app)
