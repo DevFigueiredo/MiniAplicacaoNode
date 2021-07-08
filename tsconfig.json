@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",                          
+    "target": "es2015",                          
     "module": "commonjs",                     
     "lib": ["es6"],                             
     "allowJs": true,                       
@@ -17,11 +17,10 @@
     "emitDecoratorMetadata": true,         
     "skipLibCheck": true,                     
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-     }
+    "baseUrl": "src"
   },
   "include": [
     "src/**/*"
-  ]
+  ],
+  
 }

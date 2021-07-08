@@ -28,12 +28,18 @@ class StateService{
     return State;
    }
 
-   async find(name: string){
-    const params = {name}
-    if(!params.name) delete params.name;
-    const State = await this.stateRepository.find({where:params})
-    return State;
+   async findStateByName(name: string){
+        const State = await this.stateRepository.findOne({where:{name}})
+        return State
    }
+
+   
+   async findAll(){
+      
+    const State = await this.stateRepository.find()
+    
+    return State
+}
 
 
 

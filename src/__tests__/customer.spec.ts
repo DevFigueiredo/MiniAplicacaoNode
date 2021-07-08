@@ -17,7 +17,7 @@ describe('Customer', () => {
     
   it('Create Customer', async () => {
     const city = new CityService();
-    const cityData = (await city.find("Teste"))[0];
+    const cityData = (await city.findCityByName("Teste"))[0];
 
     const rndInt = Math.floor(Math.random() * 80) + 1
     const data = {
@@ -57,7 +57,7 @@ it('Update Customer', async () => {
   const customerData = (await customer.findByName("Teste"))[0];
   
   const city = new CityService();
-  const cityData = (await city.find("Teste"))[0];
+  const cityData = (await city.findCityByName("Teste"))[0];
   
   const data = {
     name: "Cliente de Teste",

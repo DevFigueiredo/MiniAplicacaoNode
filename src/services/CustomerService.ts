@@ -27,20 +27,19 @@ class CustomerService{
 
 
    async findByName(name: string){
-    const customer = await this.customerRepository.find({
+    const customers = await this.customerRepository.find({
         relations:["city"],
         where:{
         name: Like(`%${name}%`),
     }
 }) 
-    return customer;
+    return customers;
 
    }
 
    async findById(id: string){
     const customer = await this.customerRepository.find({relations:["city"], where: {id}}) 
    return customer;
-
    }
 
    async delete(id: string){

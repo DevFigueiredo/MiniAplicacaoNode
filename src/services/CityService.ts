@@ -1,8 +1,7 @@
 import { getCustomRepository, Like, Repository } from 'typeorm';
 import { CityRepository } from '../respositories/CityRepository';
 import { City } from '../entities/City';
-import { State } from '../entities/State';
-import { StateRepository } from '../respositories/StateRepository';
+import { StateService } from './StateService';
 
 export interface ICity {
     id?: string;
@@ -13,11 +12,9 @@ export interface ICity {
 class CityService{
 
     private cityRepository: Repository<City>;
-    private stateRepository: Repository<State>;
 
     constructor (){
         this.cityRepository = getCustomRepository(CityRepository);
-        this.stateRepository = getCustomRepository(StateRepository);
     }
     
    async create({name, state_id}: ICity){
@@ -35,19 +32,36 @@ class CityService{
     return City;
    }
 
-   async find(name?: string, state_name?: string){
-
-    const state = await this.stateRepository.findOne({name:Like(`%${state_name}%`)})
-    const params = {state, name: Like(`%${name}%`)}
+   async findAll(){
+    const cities = await this.cityRepository.find();
     
-    if(!params.state) delete params.state;
-    if(!params.name) delete params.name;
-
-    const customer = await this.cityRepository.find({ relations:["state"], where:params });
-    
-    return customer;
+    return cities;
 
    }
+
+   async findCityByState(state_name: string){
+    const stateService = new StateService();
+    const state = await stateService.findStateByName(state_name)   
+    const cities = await this.cityRepository.find({ relations:["state"], where:{state} });
+    
+    return cities;
+
+   }
+
+   async findCityByName(city_name: string){
+    const cities = await this.cityRepository.findOne({name: Like(`%${city_name}%`)})
+    return cities;
+   
+}
+
+async findCityByNameAndStateName(city_name: string, state_name: string){
+    const stateService = new StateService();
+    const state = await stateService.findStateByName(state_name);
+
+    const cities = await this.cityRepository.findOne({name: city_name, state_id: state.id })
+    return cities;
+   
+}
    
 
 

@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import { CityService, ICity } from '../services/CityService';
+import { CityService, ICity } from '../services/CityService'
 
 class CityController{
 
@@ -20,12 +20,32 @@ class CityController{
     }
 
     async find(request: Request, response: Response): Promise<Response>{
-        const name = request.query?.name as string;
+        const city_name = request.query?.city_name as string;
         const state_name = request.query?.state_name as string;
         try{
         const cityService = new CityService();
-        const city = await cityService.find(name, state_name);
+        
+        if(city_name && state_name){
+        const city = await cityService.findCityByNameAndStateName(city_name, state_name);
         return response.status(200).json(city)
+    }
+        if(city_name){
+        const city = await cityService.findCityByName(city_name);
+        return response.status(200).json(city)
+    }
+        
+       if(state_name){
+        const city = await cityService.findCityByState(state_name);
+        return response.status(200).json(city)
+    }
+
+    if(!state_name && !city_name){
+    const city = await cityService.findAll();
+    return response.status(200).json(city);
+    }
+
+        return response.status(401).json({messageErro: "Error"});
+
     
     }catch(err){
         return response.status(400).json({

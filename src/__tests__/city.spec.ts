@@ -16,7 +16,7 @@ describe('City', () => {
     
   it('Create City', async () => {
     const state = new StateService();
-    const stateData = (await state.find("SP"))[0];
+    const stateData = (await state.findStateByName("SP"))[0];
     const rndInt = Math.floor(Math.random() * 1000) + 1
     const data = {
       name: "CidadeTeste"+rndInt,

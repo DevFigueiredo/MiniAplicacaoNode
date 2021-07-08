@@ -6,7 +6,7 @@ class StateController{
 
    async create(request: Request, response: Response): Promise<Response>{
         const {name}: IState = request.body;
-        try{
+        try{   
         const stateService = new StateService()
         const state = await stateService.create({name})
 
@@ -25,8 +25,13 @@ class StateController{
         const name = request.query.name as string;
         try{
         const stateService = new StateService()
-        const state = await stateService.find(name)    
+        if(name){
+            const state = await stateService.findStateByName(name)  
             return response.status(200).json(state)
+        }else{
+            const states = await stateService.findAll()  
+            return response.status(200).json(states)
+        }
         }catch(err){
         return response.status(400).json({
             messageError: err.message
