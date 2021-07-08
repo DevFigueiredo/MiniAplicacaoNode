@@ -20,11 +20,11 @@ class CityController{
     }
 
     async find(request: Request, response: Response): Promise<Response>{
-        const {name, state_name} = request.query;
-          
+        const name = request.query?.name as string;
+        const state_name = request.query?.state_name as string;
         try{
         const cityService = new CityService();
-        const city = await cityService.find({name, state_name});
+        const city = await cityService.find(name, state_name);
         return response.status(200).json(city)
     
     }catch(err){

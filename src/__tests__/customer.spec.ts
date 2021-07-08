@@ -1,6 +1,8 @@
-import connection from '../../database/connection';
+import connection from '../database/connection';
 import request from 'supertest'
-import {app} from '../../server'
+import {app} from '../server'
+import { CustomerService } from '../services/CustomerService';
+import { CityService } from '../services/CityService';
 
 beforeAll(async ()=>{
   await connection.create();
@@ -23,37 +25,46 @@ describe('Customer', () => {
     }
     
     const response = await request(app)
-    .post('/customer/create')
+    .post('/v1/customer/create')
     .send(data)
-    console.log(response.body)
     expect(response.statusCode).toBe(201);    
 });    
 
   
 it('Search Customer with name', async () => {
   const response = await request(app)
-  .get('/customer/find?name=Teste')
-   expect(response.statusCode).toBe(200);    
-});  
+  .get('/v1/customer/find?name=Teste')
+  expect(response.statusCode).toBe(200);    
+  });  
 
 
   
 it('Search Customer with ID', async () => {
+  const customer = new CustomerService();
+  const customerData = (await customer.findByName("Teste"))[0];
+
   const response = await request(app)
-  .get('/customer/find/9d2a0979-fcca-4db0-99b3-287b10422f11')
+  .get('/v1/customer/find/'+customerData.id)
    expect(response.statusCode).toBe(200);    
 });  
 
 
 it('Update Customer', async () => {
+  const customer = new CustomerService();
+  const customerData = (await customer.findByName("Teste"))[0];
+  
+  const city = new CityService();
+  const cityData = (await city.find("Teste"))[0];
+  
   const data = {
     name: "Cliente de Teste",
     gender: "MASCULINO",
     birth_date:	"1999-10-27",
-    city_id: "d8f43881-b57e-45fd-8fdf-49d0cefd80f1",
+    city_id:cityData.id,
   }
+
   const response = await request(app)
-  .put('/customer/update/9d2a0979-fcca-4db0-99b3-287b10422f11')
+  .put('/v1/customer/update/'+customerData.id)
   .send(data)
   expect(response.statusCode).toBe(202);  
 
@@ -62,20 +73,11 @@ it('Update Customer', async () => {
 
 
 it('Delete Customer', async () => {
-  // const rndInt = Math.floor(Math.random() * 80) + 1
-  // const data = {
-  //   name: "Cliente de Teste"+rndInt,
-  //   gender: "MASCULINO",
-  //   birth_date:	"1999-10-27",
-  //   city_id: "d8f43881-b57e-45fd-8fdf-49d0cefd80f1",
-  //   id: "74a37cc1-e70f-4912-9cdd-0e32b14ac9cc"
-  // }
-  
-  // console.log(data)
-  // const response = await request(app)
-  // .put('/customer/update')
-  // .send(data)
-  // expect(response.statusCode).toBe(201);  
+  const customer = new CustomerService();
+  const {id} = (await customer.findByName("Teste"))[0];
+   const response = await request(app)
+   .delete('/v1/customer/delete/'+id)
+   expect(response.statusCode).toBe(204);  
 
 });  
 

@@ -286,7 +286,7 @@
                           }
                       },
                       "responses": {
-                        "204": {
+                        "202": {
                             "content": {
                                 "application/json":{
                                     "schema":{
@@ -322,7 +322,7 @@
                             "required": true  
                           }],
                           "responses": {
-                            "200": {
+                            "204": {
                                 "content": {
                                     "application/json":{
                                       

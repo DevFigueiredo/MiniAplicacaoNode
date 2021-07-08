@@ -35,10 +35,10 @@ class CityService{
     return City;
    }
 
-   async find({name, state_name}){
+   async find(name?: string, state_name?: string){
 
-    const state = await this.stateRepository.findOne({name:state_name})
-    const params = {state, name}
+    const state = await this.stateRepository.findOne({name:Like(`%${state_name}%`)})
+    const params = {state, name: Like(`%${name}%`)}
     
     if(!params.state) delete params.state;
     if(!params.name) delete params.name;

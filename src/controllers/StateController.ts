@@ -22,10 +22,10 @@ class StateController{
 
 
     async find(request: Request, response: Response): Promise<Response>{
-        const {name} = request.query;
+        const name = request.query.name as string;
         try{
         const stateService = new StateService()
-        const state = await stateService.find({name})    
+        const state = await stateService.find(name)    
             return response.status(200).json(state)
         }catch(err){
         return response.status(400).json({

@@ -28,7 +28,7 @@ class StateService{
     return State;
    }
 
-   async find({name}){
+   async find(name: string){
     const params = {name}
     if(!params.name) delete params.name;
     const State = await this.stateRepository.find({where:params})
