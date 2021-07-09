@@ -22,12 +22,12 @@ $ yarn install
 ### Execute a aplicação em modo de desenvolvimento
 $ yarn dev
 
-### O servidor inciará na porta:3333 - acesse <http://localhost:3333> 
+### O servidor iniciará na porta:3333 - acesse <http://localhost:3333> 
 
 ### Para rodar os testes da aplicação 
 $ yarn test
 
-### Documentação da API do Projeto (Swagger) 
+### Documentação da API do Projeto (Swagger) com as API's expostas
 $ <http://localhost:3333/api-docs>
 
 
