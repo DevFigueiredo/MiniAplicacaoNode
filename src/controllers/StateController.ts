@@ -9,7 +9,6 @@ class StateController{
         try{   
         const stateService = new StateService()
         const state = await stateService.create({name})
-
         return response.status(201).json(state)
         }catch(err){
         return response.status(400).json({

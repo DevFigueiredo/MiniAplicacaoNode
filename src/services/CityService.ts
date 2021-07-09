@@ -49,7 +49,7 @@ class CityService{
    }
 
    async findCityByName(city_name: string){
-    const cities = await this.cityRepository.findOne({name: Like(`%${city_name}%`)})
+    const cities = await this.cityRepository.find({name: Like(`%${city_name}%`)})
     return cities;
    
 }

@@ -58,7 +58,6 @@ class CustomerController {
  name, gender, birth_date, city_id 
 }: ICustomer = request.body;
     const { id } = request.params;
-    console.log(id);
     try {
       const customerService = new CustomerService();
 
