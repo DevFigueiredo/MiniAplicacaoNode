@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 import { CustomerService, ICustomer } from '../services/CustomerService';
 
 class CustomerController {
+
+
+
+  
   async create(request: Request, response: Response): Promise<Response> {
     const {
  name, gender, birth_date, city_id 
