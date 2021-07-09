@@ -1,7 +1,7 @@
 # Mini Aplicacao NodeJS Posts 
 
 ## Descrição do Projeto
-<p align="center">Projeto com possibilidade criar postagens, e dar like nas postagens criadas.</p>
+<p align="center">Projeto com possibilidade de criar cidades, estados e clientes em uma base de dados. Desenvolvido em desafio técnico da CompassoUol</p>
 
 
 ### Pré-requisitos
