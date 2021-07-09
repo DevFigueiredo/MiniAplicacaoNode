@@ -21,6 +21,7 @@ describe('State', () => {
     const response = await request(app)
     .post('/v1/state/create')
     .send(data)
+    
     expect(response.statusCode).toBe(201);    
 });    
 
